@@ -1,6 +1,6 @@
-import 'package:chat_app_sat/model/Message.dart';
-import 'package:chat_app_sat/model/Room.dart';
-import 'package:chat_app_sat/model/User.dart';
+import 'package:chat_app/model/Message.dart';
+import 'package:chat_app/model/Room.dart';
+import 'package:chat_app/model/User.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 CollectionReference<User> getUsersCollectionWithConverter(){

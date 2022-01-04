@@ -1,6 +1,7 @@
-import 'package:chat_app_sat/AppProvider.dart';
-import 'package:chat_app_sat/model/Room.dart';
-import 'package:chat_app_sat/room/RoomScreen.dart';
+import 'package:chat_app/Screens/room/RoomScreen.dart';
+import 'package:chat_app/provider/AppProvider.dart';
+import 'package:chat_app/model/Room.dart';
+import 'package:chat_app/styles/chatTheme.dart';
 import 'package:flutter/material.dart';
 
 class RoomWidget extends StatelessWidget {

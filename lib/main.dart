@@ -1,20 +1,27 @@
-import 'package:chat_app_sat/addRoom/AddRoom.dart';
-import 'package:chat_app_sat/auth/LoginScreen.dart';
-import 'package:chat_app_sat/auth/RegisterScreen.dart';
-import 'package:chat_app_sat/AppProvider.dart';
-import 'package:chat_app_sat/home/HomeScreen.dart';
-import 'package:chat_app_sat/room/RoomScreen.dart';
+import 'package:chat_app/Screens/addRoom/AddRoom.dart';
+import 'package:chat_app/Screens/auth/LoginScreen.dart';
+import 'package:chat_app/Screens/auth/RegisterScreen.dart';
+import 'package:chat_app/Screens/home/HomeScreen.dart';
+import 'package:chat_app/Screens/room/RoomScreen.dart';
+import 'package:chat_app/provider/AppProvider.dart';
+import 'package:chat_app/styles/chatTheme.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  // Ideal time to initialize
-  //await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
+
+  FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
   runApp(MyApp());
+
+}
+Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+  //app in background
+  print("Handling a background message: ${message.messageId}");
 }
 
 class MyApp extends StatelessWidget {
@@ -32,6 +39,7 @@ class MyApp extends StatelessWidget {
               primaryColor: MyThemeData.primaryColor,
               scaffoldBackgroundColor: Colors.transparent
           ),
+          debugShowCheckedModeBanner: false,
           routes: {
             LoginScreen.ROUTE_NAME:(buildContext)=>LoginScreen(),
             RegisterScreen.ROUTE_NAME:(buildContext)=>RegisterScreen(),
@@ -40,7 +48,7 @@ class MyApp extends StatelessWidget {
             RoomScreen.routeName:(buildContext)=>RoomScreen(),
           },
           initialRoute:
-              isLoggedInUser? HomeScreen.ROUTE_NAME:
+             isLoggedInUser? HomeScreen.ROUTE_NAME:
               LoginScreen.ROUTE_NAME,
         );
     },
