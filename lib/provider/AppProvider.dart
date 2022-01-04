@@ -1,5 +1,6 @@
 import 'package:chat_app/Screens/auth/LoginScreen.dart';
 import 'package:chat_app/Screens/home/HomeScreen.dart';
+import 'package:chat_app/Screens/intro/intro.dart';
 import 'package:chat_app/database/DataBaseHelper.dart';
 import 'package:chat_app/model/Message.dart';
 import 'package:chat_app/model/User.dart' as MyUser;
@@ -183,7 +184,7 @@ class AppProvider extends ChangeNotifier{
     void signOut(context)  {
      FirebaseAuth.instance.signOut().then(
              (value) {
-               Navigator.pushReplacementNamed(context, LoginScreen.ROUTE_NAME);
+               Navigator.pushReplacementNamed(context, IntroScreen.ROUTE_NAME);
              }).catchError((error){
                print(error.toString());
      });

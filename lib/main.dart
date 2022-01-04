@@ -2,6 +2,7 @@ import 'package:chat_app/Screens/addRoom/AddRoom.dart';
 import 'package:chat_app/Screens/auth/LoginScreen.dart';
 import 'package:chat_app/Screens/auth/RegisterScreen.dart';
 import 'package:chat_app/Screens/home/HomeScreen.dart';
+import 'package:chat_app/Screens/intro/intro.dart';
 import 'package:chat_app/Screens/room/RoomScreen.dart';
 import 'package:chat_app/provider/AppProvider.dart';
 import 'package:chat_app/styles/chatTheme.dart';
@@ -46,10 +47,10 @@ class MyApp extends StatelessWidget {
             HomeScreen.ROUTE_NAME:(buildContext)=>HomeScreen(),
             AddRoom.ROUTE_NAME:(buildContext)=>AddRoom(),
             RoomScreen.routeName:(buildContext)=>RoomScreen(),
+            IntroScreen.ROUTE_NAME:(buildContext)=>IntroScreen(),
           },
-          initialRoute:
-             isLoggedInUser? HomeScreen.ROUTE_NAME:
-              LoginScreen.ROUTE_NAME,
+          initialRoute: isLoggedInUser? HomeScreen.ROUTE_NAME: IntroScreen.ROUTE_NAME,
+
         );
     },
     );
